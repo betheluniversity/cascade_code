@@ -43,7 +43,11 @@ public class RemoteUserAuth extends java.lang.Object
     }
 
     public String authenticate(HttpServletRequest request, HttpServletResponse response) {
-        // return request.getRemoteUser();
+        /* This line was originally 
+             return request.getRemoteUser();
+           but that method isn't working. Our workaround is to set a custom header in the Apache vhost named 
+           "CAS-User" and then read it here and in the if statement above.
+        */
         return request.getHeader("CAS-User");
     }
 }
